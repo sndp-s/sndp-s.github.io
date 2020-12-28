@@ -10,7 +10,7 @@ body {
 #header {
   border: 2px rgb(250, 77, 77) solid;
   padding: 1vh 1vw 1vh 1vw;
-  margin: 1vh 1vw 1vh 1vw;
+  margin: 0 1vw 0 1vw;
 }
 
 #header__greeting {
@@ -19,6 +19,10 @@ body {
 
 #header__nav-bar {
   display: inline;
-  margin-left: 3vw;;
+  margin-left: 3vw;
   font-size: 5vh;
+}
+
+.nav-bar--item {
+  margin-left: 2vw;
 }
