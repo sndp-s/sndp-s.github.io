@@ -7,6 +7,10 @@ body {
   
 }
 
+a {
+  text-decoration: none;
+}
+
 #header {
   border: 2px rgb(250, 77, 77) solid;
   padding: 1vh 1vw 1vh 1vw;
