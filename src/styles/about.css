@@ -6,7 +6,24 @@ body {
   background: #ffdcef; 
 }
 
-a {
+a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(73, 70, 70);
+  background-color: white;
+  text-decoration: none;
+}
+a:active {
+  color: rgb(73, 70, 70);
+  background-color: white;
   text-decoration: none;
 }
 
