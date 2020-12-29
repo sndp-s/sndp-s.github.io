@@ -36,3 +36,8 @@ a:active {
   border: 1px solid black;
   text-align: center;
 }
+
+.etc--item {
+  max-width: fit-content;
+  padding: 0 1vw;
+}
