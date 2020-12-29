@@ -9,3 +9,11 @@ body {
 a {
   text-decoration: none;
 }
+
+#home-link {
+  display: block;
+  background: #FAE1C9;
+  padding: .2vh .5vw;
+  border: 1px solid black;
+  text-align: center;
+}
