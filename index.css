@@ -1,50 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
-body {
-  font-family: 'Amatic SC', 'sans serif';
-  font-size: 3vh;
-  background: #ffdcef;
-  
-}
+* {margin:0; padding:0; }
+body { font-family: 'Amatic SC', 'sans serif'; font-size: 3vh; background: #B42B51; }
+a {text-decoration: none;}
 
-a:link {
-  color: black;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:visited {
-  color: black;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:hover {
-  color: rgb(73, 70, 70);
-  background-color: white;
-  text-decoration: none;
-}
-a:active {
-  color: rgb(73, 70, 70);
-  background-color: white;
-  text-decoration: none;
-}
+.container{max-width: 750px; width: 100%; margin: 0 auto;}
 
-#header {
-  /* border: 2px rgb(250, 77, 77) solid; */
-  padding: 1vh 1vw 1vh 1vw;
-  margin: 0 1vw 0 1vw;
-}
 
-#header__greeting {
-  display: inline;
-}
+.header { border-bottom: .5px #420516 solid;}
+.header .header-wrap {display: flex; justify-content: space-between; align-items: center; padding: 5px 0;}
+.header__greeting {cursor: pointer; color: #420516;}
+.header__nav-bar {font-size: 5vh; }
+.nav-bar--item { margin-left: 2vw; padding: 0 0.5vw; }
+.header a {color: #420516;}
+.header a:hover, a:active  { color: #420516; background-color: #E63E6D; }
 
-#header__nav-bar {
-  display: inline;
-  margin-left: 3vw;
-  font-size: 5vh;
-}
-
-.nav-bar--item {
-  margin-left: 2vw;
-  padding: 0 1vw;
-}
+#section-1 {display: flex; margin-top: 5vh; padding: 10px 0 10px 0;}
+#section-1 .image{max-width: 125px; margin-right:10px;}
+#section-1 img {width: 100%; height: auto;}
+#section-1 article {height: fit-content; padding:5px; background: #E63E6D;}

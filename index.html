@@ -3,25 +3,45 @@
   <head>
     <title>herrrow!!!</title>
     <link rel="stylesheet" href="index.css"></style>
-  </head>
+</head>
 
-  <body>
-    <header id="header">
-      
-      <h1 id="header__greeting">Herrrow!!!</h1>
-  
-      <audio preload="auto" id="header__audio-embed">
-        <source src="./src/assets/audio/Herrro.mp3" type="audio/mpeg">
-      </audio>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-wrap">
+        <h1 class="header__greeting" id="header__greeting">Herrrow!!!</h1>
+        <audio preload="auto" class="header__audio-embed" id="header__audio-embed">
+          <source src="./src/assets/audio/Herrro.mp3" type="audio/mpeg">
+        </audio>
+        <nav class="header__nav-bar">
+          <a href="/src/markup/contact.html" id="nav-bar__contact" class="nav-bar--item">contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-      <nav id="header__nav-bar">
-        <a href="/src/markup/about.html" id="nav-bar__about" class="nav-bar--item">about</a>
-        <a href="/src/markup/contact.html" id="nav-bar__contact" class="nav-bar--item">contact</a>
-        <a href="/src/markup/etc.html" id="nav-bar__etc" class="nav-bar--item">etc</a>
-      </nav>
+  <div class="container">
+    <section id="section-1">
+      <aside class="image">
+        <img src="./src/assets/images/me.jpg" alt="picture of me">
+      </aside>
+      <article>
+        <p>
+          Herrrow!
+        </p>
+        <p>
+          I am Sandeep. I can program stuff and am really bored of the standard stuff. I would like to work on something meaningful, interesting and fun. These days I am stale but also looking around for interesting things to make/learn and hope to find it soon.
+        </p>
+      </article>
+    </section>
+  </div>
 
-    </header>
-
-    <script src="script.js"></script>
-  </body>
+  <script>
+    const greetingElement = document.getElementById("header__greeting");
+    const audioEmbedElement = document.getElementById("header__audio-embed");
+    greetingElement.addEventListener("click", () => {
+      audioEmbedElement.play();
+    });
+  </script>
+</body>
 </html>
