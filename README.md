@@ -1,4 +1,3 @@
-# Sandeep-Tech.github.io
-an experiment.
+# my homepage
  
-*[link](https://sandeep-tech.github.io/) to the site.*
+The [link](https://sandeep-tech.github.io/) to the site.
