@@ -1,3 +1,1 @@
-# my homepage
- 
-[link](https://sandeep-tech.github.io/) to the site.
+[My homepage](https://sndp-s.github.io/)
