@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sndp-s</title>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    function playGreeting() {
-      const audio = new Audio('greeting.mp3');
-      audio.play();
-    }
-  </script>
-</head>
-<body>
-  <p><span onclick="playGreeting()" class="name">Sandeep Sharma</span>, Maker</p>
-  <p><a href="SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank">Resume</a></p>
-  <p><a href="mailto:sandeeptech8@gmail.com">Mailbox: sandeeptech8@gmail.com</a></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandeep Sharma</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+    <link rel="stylesheet" href="site.css" />
+    <style>
+      h1 {
+        cursor: pointer;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .resume-link {
+        margin: 1rem 0;
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      .log-item {
+        background: var(--secondary-color);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        border-bottom: 1px solid var(--accent-color);
+        padding-bottom: 0.3rem;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1 onclick="new Audio('greeting.mp3').play()">Sandeep Sharma</h1>
+
+      <p class="resume-link">
+        <a href="SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank"
+          >📄 View My Resume</a
+        >
+      </p>
+
+      <section>
+        <h2>Contact</h2>
+        <ul>
+          <li>
+            <strong>GitHub:</strong>
+            <a href="https://github.com/sndp-s" target="_blank">sndp-s</a>
+          </li>
+          <li>
+            <strong>LinkedIn:</strong>
+            <a href="https://linkedin.com/in/sndp-s" target="_blank">sndp-s</a>
+          </li>
+          <li>
+            <strong>Email:</strong>
+            <a href="mailto:sandeeptech8@gmail.com">sandeeptech8@gmail.com</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>
