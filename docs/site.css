@@ -1,0 +1,24 @@
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #aeea00;
+  --secondary-color: #1e1e1e;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--accent-color);
+}
+
+img[loading="lazy"] {
+  max-width: 100%;
+  height: auto;
+}
