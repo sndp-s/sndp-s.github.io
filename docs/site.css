@@ -3,6 +3,8 @@
   --text-color: #e0e0e0;
   --accent-color: #aeea00;
   --secondary-color: #1e1e1e;
+  --code-bg: #1a1a2e; /* Dark blue-ish gray — tweak as desired */
+  --code-inline-bg: #2a2a3b; /* Slightly lighter for inline code */
 }
 
 body {
@@ -21,4 +23,35 @@ a {
 img[loading="lazy"] {
   max-width: 100%;
   height: auto;
+}
+
+/* Inline code */
+code {
+  background: var(--code-inline-bg);
+  color: var(--accent-color);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+/* Code blocks */
+pre {
+  background: var(--code-bg);
+  color: var(--text-color);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "Courier New", monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin: 2rem 0;
+}
+
+/* Avoid double styles */
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
 }
