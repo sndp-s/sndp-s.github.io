@@ -7,6 +7,12 @@
   --code-inline-bg: #2a2a3b; /* Slightly lighter for inline code */
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background: var(--bg-color);
   color: var(--text-color);
