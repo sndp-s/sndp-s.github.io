@@ -14,7 +14,9 @@ module.exports = function (eleventyConfig) {
   );
 
   eleventyConfig.addCollection("logs", (collectionApi) => {
-    return collectionApi.getFilteredByGlob("./logs/*.md");
+    return collectionApi
+      .getFilteredByGlob("./logs/*.md")
+      .sort((a, b) => b.date - a.date);
   });
 
   return {
