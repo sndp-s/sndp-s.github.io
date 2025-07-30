@@ -1,7 +1,7 @@
 ---
 title: Using Django’s Custom Management Commands to Execute Workflows with Application Context
 date: 2025-07-20
-permalink: false
+layout: layouts/blog.njk
 ---
 
 At a previous job, one of my colleagues was tasked with a one-off project: processing a large number of files (over 20,000, if I recall correctly) using a third-party service and storing a subset of the results in our database. Here's a breakdown of how we approached it.

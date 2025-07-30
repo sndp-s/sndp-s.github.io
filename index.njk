@@ -1,97 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sandeep Sharma</title>
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest"/>
-    <link rel="stylesheet" href="site.css"/>
-    <style>
-      h1 {
-        cursor: pointer;
-        color: var(--accent-color);
-        margin-bottom: 0.5rem;
-      }
-      .resume-link {
-        margin: 1rem 0;
-        display: inline-block;
-        font-weight: bold;
-      }
-      .log-item {
-        background: var(--secondary-color);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1.5rem;
-      }
-      .log-item.log-date {
-        font-size: 0.9em;
-        color: #999;
-        margin-bottom: 0.5rem;
-      }
-      h2 {
-        border-bottom: 1px solid var(--accent-color);
-        padding-bottom: 0.3rem;
-        margin-top: 2rem;
-      }
-      .site-wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      main {
-        flex: 1;
-      }
-      .footer {
-        text-align: center;
-        padding: 1rem 0;
-        color: var(--text-secondary);
-      }
-    </style>
-  </head>
-  <body>
-    <div class="site-wrapper">
-      <main class="container">
-        <h1 onclick="new Audio('greeting.mp3').play()">Sandeep Sharma</h1>
-        <p>
-          I’m Sandeep — a software engineer with 3 years of experience building web applications across fintech, SaaS, and
-          automation platforms. I primarily work with Python, React, and Postgres, and have built everything from internal tools
-          to production-scale systems. I care deeply about clean, maintainable code on both the frontend and backend, and I aim to
-          ship thoughtful, reliable features that solve real problems.
-        </p>
-        <p class="resume-link">
-          <a href="SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank">📄 View My Resume</a>
-        </p>
-        <section>
-          <h2>Contact</h2>
-          <ul>
-            <li>
-              <strong>GitHub:</strong>
-              <a href="https://github.com/sndp-s" target="_blank">sndp-s</a>
-            </li>
-            <li>
-              <strong>LinkedIn:</strong>
-              <a href="https://linkedin.com/in/sndp-s" target="_blank">sndp-s</a>
-            </li>
-            <li>
-              <strong>Email:</strong>
-              <a href="mailto:sandeeptech8@gmail.com">sandeeptech8@gmail.com</a>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h2>Logs</h2>
-          {% for log in collections.logs %}
-            <div class="log-item">
-              <h3>{{ log.data.title }}</h3>
-              <p class="log-date">{{ log.date | readableDate }}</p>
-              <p>{{ log.templateContent | safe }}</p>
-            </div>
-          {% endfor %}
-        </section>
-      </main>
-      <footer class="footer">
-        © 2025 Sandeep Sharma. All rights reserved.
-      </footer>
-    </div>
-  </body>
-</html>
+---
+layout: layouts/base.njk
+title: "Sandeep Sharma"
+---
+
+<section>
+  <p>
+    I’m Sandeep — a software engineer with 3 years of experience building web applications across fintech, SaaS, and
+    automation platforms. I primarily work with Python, React, and Postgres, and have built everything from internal tools
+    to production-scale systems. I care deeply about clean, maintainable code on both the frontend and backend, and I aim to
+    ship thoughtful, reliable features that solve real problems.
+  </p>
+  <p class="resume-link">
+    <a href="/SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank">📄 View My Resume</a>
+  </p>
+</section>
+<section>
+  <h2>Contact</h2>
+  <ul>
+    <li>
+      <strong>GitHub:</strong>
+      <a href="https://github.com/sndp-s" target="_blank">sndp-s</a>
+    </li>
+    <li>
+      <strong>LinkedIn:</strong>
+      <a href="https://linkedin.com/in/sndp-s" target="_blank">sndp-s</a>
+    </li>
+    <li>
+      <strong>Email:</strong>
+      <a href="mailto:sandeeptech8@gmail.com">sandeeptech8@gmail.com</a>
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>Latest Blog Posts</h2>
+  {% if collections.recentBlogs and (collections.recentBlogs | length > 0) %}
+    <ul>
+      {% for blog in collections.recentBlogs %}
+        <li>
+          <a href="{{ blog.url }}">{{ blog.data.title }}</a>
+          <span class="log-date">{{ blog.date | readableDate }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p>
+      <a href="/blogs/">→ View all blog posts</a>
+    </p>
+  {% else %}
+    <p>No blog posts yet.</p>
+  {% endif %}
+</section>

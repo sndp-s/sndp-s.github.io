@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>My homelab is up finally</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest"/>
+    <link rel="stylesheet" href="/site.css"/>
+  </head>
+  <body>
+    <main class="container">
+      <h1>My homelab is up finally</h1>
+      <p class="date">July 25, 2025</p>
+      <article>
+        <p>Ever since I bought my (first ever) laptop, my desktop has been lying dormant. It had very good specs for my needs — Ryzen 3500X, GTX 1650 Super, 16 GB RAM, and two 240 GB SSDs (dedicated disks for Windows and Linux respectively) — but I needed the portability and flexibility of a laptop more.</p>
+<p>I always had this vague idea of setting it up as a server, but I didn’t have a clear mental image of what that would look like. I could’ve figured that out with some tinkering, but I barely get around to that these days.</p>
+<p>Recently, I’ve been thinking a lot about organizing my personal data: bookmarks, notes, docs, books, unread articles, music, movies, YouTube playlists, etc. Some of these are just lists of strings, others are actual files, some are both. This gave me enough clarity to finally take it up.</p>
+<h2>Requirements</h2>
+<p>The very first thing I wanted to organize was my bookmarks.</p>
+<p>Every time I’m online, I launch tens of tabs I want to come back to later. They sit in the tab bar, slowing everything down, until I either deal with them or give up. I usually just dump them in bookmarks once I’ve got too many — but that fragments everything. Sure, I could sync browser profiles, but I’m experimenting and don’t want to get locked into any browser’s ecosystem. And I simply want more control over my data.</p>
+<p>I wanted a way to:</p>
+<ul>
+<li>Save bookmarks from both PC and phone (Android)</li>
+<li>Access and manage them from anywhere</li>
+<li>Not depend on some browser sync thing</li>
+<li>In future, integrate it with other tools I might deploy to manage my life</li>
+</ul>
+<p>My first thought was: just write something. Maybe a browser extension + FastAPI/Django backend + Telegram bot. But this isn’t a particularly unique problem. There had to be a solid open-source project that already solves it.</p>
+<p>I asked ChatGPT, and one of the options it suggested was Linkding — a self-hosted bookmark manager built with Django and a custom frontend. It looked simple, stable, and familiar. There’s a browser extension for desktop, several mobile apps, and even a Telegram bot. Sold.</p>
+<h2>Proxmox</h2>
+<p>With this baseline requirement in mind, I started setting up the server.</p>
+<p>I had come across <a href="https://www.proxmox.com">Proxmox</a> several times on <a href="https://www.youtube.com/@CraftComputing/videos">Craft Computing</a> and understood it as a good solution for hosting VMs on Linux. It also supports <a href="https://linuxcontainers.org">LXC containers</a> and <a href="https://openzfs.org/wiki/Main_Page">ZFS</a>, which I could use later for backups and media.</p>
+<p>I installed Proxmox on the dedicated Linux SSD and booted it up.</p>
+<p><strong>Problem 1:</strong> Proxmox insists on Ethernet, and I couldn’t run a cable or move the server near the router. I needed a quick fix, so I jury-rigged Wi‑Fi in two steps:</p>
+<ol>
+<li><strong>USB tethering:</strong> tethered my Android phone, switched Proxmox’s main bridge to the USB interface, updated gateway/DNS, and verified internet access.</li>
+<li><strong>Wireless card:</strong> installed the Wi‑Fi drivers, then repeated the same bridge and routing tweaks to move from USB to the onboard card.</li>
+</ol>
+<p>It was a hack — static IPs, route adjustments, and DNS overrides — but it worked. Huge thanks to ChatGPT for guiding me through.</p>
+<p>Next, I installed an Ubuntu Server VM.</p>
+<p><strong>Problem 2:</strong> Networking again. I’d have to redo a similar Wi‑Fi hack inside the VM. But worse — when using Wi‑Fi, Proxmox can’t create traditional network bridges, so I would need to set up NAT manually to allow internal routing.</p>
+<p>At this point, I realized I was going to hit this same wall for <em>every</em> VM or container I planned to run. I decided it wasn’t worth it.</p>
+<p>Ubuntu Server is good enough for my use case. But again — no Wi‑Fi drivers out of the box. To avoid more hassle, I just went with Ubuntu Desktop.</p>
+<h2>Ubuntu Desktop</h2>
+<p>I ditched Proxmox and installed Ubuntu Desktop directly. Then I installed <a href="https://coolify.io">Coolify</a>, an open-source PaaS.</p>
+<p>Created a starter project, set up a Postgres DB… and <strong>Problem 3</strong>: SSD started dying.</p>
+<p>Can’t remember if it shut down on its own or I rebooted — but it wouldn’t boot back. Diagnosed it with ChatGPT, ran checks — and yeah, disk was toast. Only 7% life left. Thankfully, there was no data in it to be lost.</p>
+<p>That was it. I was too tired to keep pushing. Took a break.</p>
+<h2>Round 3: Just Get It Working</h2>
+<p>I came back with one goal: no fancy tools, just get Linkding running.</p>
+<p>Since my Windows SSD wasn’t doing anything anyway, I dual-booted Ubuntu Desktop onto it.</p>
+<p>Set up Coolify again, launched a Postgres instance from a pre-built template, and then Linkding using its official Docker Compose. But they couldn’t talk to each other — some internal Docker network config was off. Debugging it inside Coolify was annoying, so I decided to simplify things further and drop Coolify as well. At this point, things were as simple as possible for me:</p>
+<ul>
+<li>No Proxmox</li>
+<li>No Coolify</li>
+<li>Just Ubuntu + Docker + Nginx + Tailscale</li>
+</ul>
+<p>At the end, I was left with the tools I was most familiar with, and I was able to get the setup up and running in minutes this time. It’s just a simple Docker Compose script that defines the core app + DB, Nginx that handles routing of traffic landing in my server from the internet, and Tailscale Funnel bridging my server to the public internet.</p>
+<p>Nginx routes requests to different services based on path — e.g. <code>/linkding</code> → Linkding container.</p>
+<p>I’ll move to subdomain-based routing once I get a proper domain, but not right now.</p>
+<h2>What’s Next?</h2>
+<p>I don’t trust local-only storage anymore — one dead SSD is enough. So I’ll eventually set up backups to a remote service like <a href="https://www.backblaze.com">Backblaze</a> or <a href="https://wasabi.com/pricing">Wasabi</a>.</p>
+<p>For now, I have a working home server running Linkding with Docker, Tailscale, and Nginx. I’ll build on top of this as needed.</p>
+<p>That’s it. Not pretty, but it works. And I learned a lot.</p>
+
+      </article>
+    </main>
+  </body>
+</html>

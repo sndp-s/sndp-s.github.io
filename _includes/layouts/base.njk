@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ title or "Sandeep Sharma" }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest"/>
+    <link rel="stylesheet" href="/site.css"/>
+    <style>
+      .site-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex: 1;
+      }
+      .footer {
+        text-align: center;
+        padding: 1rem 0;
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <main class="container">
+        <nav>
+          <h1 onclick="new Audio('greeting.mp3').play()">Sandeep Sharma</h1>
+        </nav>
+        {{ content | safe }}
+      </main>
+      <footer class="footer">
+        © 2025 Sandeep Sharma. All rights reserved.
+      </footer>
+    </div>
+  </body>
+</html>

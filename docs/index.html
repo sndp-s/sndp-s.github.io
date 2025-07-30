@@ -5,34 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Sandeep Sharma</title>
     <link rel="stylesheet" href="https://unpkg.com/chota@latest"/>
-    <link rel="stylesheet" href="site.css"/>
+    <link rel="stylesheet" href="/site.css"/>
     <style>
-      h1 {
-        cursor: pointer;
-        color: var(--accent-color);
-        margin-bottom: 0.5rem;
-      }
-      .resume-link {
-        margin: 1rem 0;
-        display: inline-block;
-        font-weight: bold;
-      }
-      .log-item {
-        background: var(--secondary-color);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1.5rem;
-      }
-      .log-item.log-date {
-        font-size: 0.9em;
-        color: #999;
-        margin-bottom: 0.5rem;
-      }
-      h2 {
-        border-bottom: 1px solid var(--accent-color);
-        padding-bottom: 0.3rem;
-        margin-top: 2rem;
-      }
       .site-wrapper {
         display: flex;
         flex-direction: column;
@@ -51,119 +25,64 @@
   <body>
     <div class="site-wrapper">
       <main class="container">
-        <h1 onclick="new Audio('greeting.mp3').play()">Sandeep Sharma</h1>
-        <p>
-          I’m Sandeep — a software engineer with 3 years of experience building web applications across fintech, SaaS, and
-          automation platforms. I primarily work with Python, React, and Postgres, and have built everything from internal tools
-          to production-scale systems. I care deeply about clean, maintainable code on both the frontend and backend, and I aim to
-          ship thoughtful, reliable features that solve real problems.
-        </p>
-        <p class="resume-link">
-          <a href="SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank">📄 View My Resume</a>
-        </p>
-        <section>
-          <h2>Contact</h2>
-          <ul>
-            <li>
-              <strong>GitHub:</strong>
-              <a href="https://github.com/sndp-s" target="_blank">sndp-s</a>
-            </li>
-            <li>
-              <strong>LinkedIn:</strong>
-              <a href="https://linkedin.com/in/sndp-s" target="_blank">sndp-s</a>
-            </li>
-            <li>
-              <strong>Email:</strong>
-              <a href="mailto:sandeeptech8@gmail.com">sandeeptech8@gmail.com</a>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h2>Logs</h2>
-          
-            <div class="log-item">
-              <h3>My homelab is up finally</h3>
-              <p class="log-date">July 25, 2025</p>
-              <p><p>Ever since I bought my (first ever) laptop, my desktop has been lying dormant. It had very good specs for my needs — Ryzen 3500X, GTX 1650 Super, 16 GB RAM, and two 240 GB SSDs (dedicated disks for Windows and Linux respectively) — but I needed the portability and flexibility of a laptop more.</p>
-<p>I always had this vague idea of setting it up as a server, but I didn’t have a clear mental image of what that would look like. I could’ve figured that out with some tinkering, but I barely get around to that these days.</p>
-<p>Recently, I’ve been thinking a lot about organizing my personal data: bookmarks, notes, docs, books, unread articles, music, movies, YouTube playlists, etc. Some of these are just lists of strings, others are actual files, some are both. This gave me enough clarity to finally take it up.</p>
-<p><strong>Requirements</strong></p>
-<p>The very first thing I wanted to organize was my bookmarks.</p>
-<p>Every time I’m online, I launch tens of tabs I want to come back to later. They sit in the tab bar, slowing everything down, until I either deal with them or give up. I usually just dump them in bookmarks once I’ve got too many — but that fragments everything. Sure, I could sync browser profiles, but I’m experimenting and don’t want to get locked into any browser’s ecosystem. And I simply want more control over my data.</p>
-<p>I wanted a way to:</p>
-<ul>
-<li>Save bookmarks from both PC and phone (Android)</li>
-<li>Access and manage them from anywhere</li>
-<li>Not depend on some browser sync thing</li>
-<li>In future, integrate it with other tools I might deploy to manage my life</li>
-</ul>
-<p>My first thought was: just write something. Maybe a browser extension + FastAPI/Django backend + Telegram bot. But this isn’t a particularly unique problem. There had to be a solid open-source project that already solves it.</p>
-<p>I asked ChatGPT, and one of the options it suggested was Linkding — a self-hosted bookmark manager built with Django and a custom frontend. It looked simple, stable, and familiar. There’s a browser extension for desktop, several mobile apps, and even a Telegram bot. Sold.</p>
-<p><strong>Proxmox</strong></p>
-<p>With this baseline requirement in mind, I started setting up the server.</p>
-<p>I had come across <a href="https://www.proxmox.com">Proxmox</a> several times on <a href="https://www.youtube.com/@CraftComputing/videos">Craft Computing</a> and understood it as a good solution for hosting VMs on Linux. It also supports <a href="https://linuxcontainers.org">LXC containers</a> and <a href="https://openzfs.org/wiki/Main_Page">ZFS</a>, which I could use later for backups and media.</p>
-<p>I installed Proxmox on the dedicated Linux SSD and booted it up.</p>
-<p><strong>Problem 1:</strong> Proxmox insists on Ethernet, and I couldn’t run a cable or move the server near the router. I needed a quick fix, so I jury-rigged Wi‑Fi in two steps:</p>
-<ol>
-<li><strong>USB tethering:</strong> tethered my Android phone, switched Proxmox’s main bridge to the USB interface, updated gateway/DNS, and verified internet access.</li>
-<li><strong>Wireless card:</strong> installed the Wi‑Fi drivers, then repeated the same bridge and routing tweaks to move from USB to the onboard card.</li>
-</ol>
-<p>It was a hack — static IPs, route adjustments, and DNS overrides — but it worked. Huge thanks to ChatGPT for guiding me through.</p>
-<p>Next, I installed an Ubuntu Server VM.</p>
-<p><strong>Problem 2:</strong> Networking again. I’d have to redo a similar Wi‑Fi hack inside the VM. But worse — when using Wi‑Fi, Proxmox can’t create traditional network bridges, so I would need to set up NAT manually to allow internal routing.</p>
-<p>At this point, I realized I was going to hit this same wall for <em>every</em> VM or container I planned to run. I decided it wasn’t worth it.</p>
-<p>Ubuntu Server is good enough for my use case. But again — no Wi‑Fi drivers out of the box. To avoid more hassle, I just went with Ubuntu Desktop.</p>
-<p><strong>Ubuntu Desktop</strong></p>
-<p>I ditched Proxmox and installed Ubuntu Desktop directly. Then I installed <a href="https://coolify.io">Coolify</a>, an open-source PaaS.</p>
-<p>Created a starter project, set up a Postgres DB… and <strong>Problem 3</strong>: SSD started dying.</p>
-<p>Can’t remember if it shut down on its own or I rebooted — but it wouldn’t boot back. Diagnosed it with ChatGPT, ran checks — and yeah, disk was toast. Only 7% life left. Thankfully, there was no data in it to be lost.</p>
-<p>That was it. I was too tired to keep pushing. Took a break.</p>
-<p><strong>Round 3: Just Get It Working</strong></p>
-<p>I came back with one goal: no fancy tools, just get Linkding running.</p>
-<p>Since my Windows SSD wasn’t doing anything anyway, I dual-booted Ubuntu Desktop onto it.</p>
-<p>Set up Coolify again, launched a Postgres instance from a pre-built template, and then Linkding using its official Docker Compose. But they couldn’t talk to each other — some internal Docker network config was off. Debugging it inside Coolify was annoying, so I decided to simplify things further and drop Coolify as well. At this point, things were as simple as possible for me:</p>
-<ul>
-<li>No Proxmox</li>
-<li>No Coolify</li>
-<li>Just Ubuntu + Docker + Nginx + Tailscale</li>
-</ul>
-<p>At the end, I was left with the tools I was most familiar with, and I was able to get the setup up and running in minutes this time. It’s just a simple Docker Compose script that defines the core app + DB, Nginx that handles routing of traffic landing in my server from the internet, and Tailscale Funnel bridging my server to the public internet.</p>
-<p>Nginx routes requests to different services based on path — e.g. <code>/linkding</code> → Linkding container.</p>
-<p>I’ll move to subdomain-based routing once I get a proper domain, but not right now.</p>
-<p><strong>What’s Next?</strong></p>
-<p>I don’t trust local-only storage anymore — one dead SSD is enough. So I’ll eventually set up backups to a remote service like <a href="https://www.backblaze.com">Backblaze</a> or <a href="https://wasabi.com/pricing">Wasabi</a>.</p>
-<p>For now, I have a working home server running Linkding with Docker, Tailscale, and Nginx. I’ll build on top of this as needed.</p>
-<p>That’s it. Not pretty, but it works. And I learned a lot.</p>
-</p>
-            </div>
-          
-            <div class="log-item">
-              <h3>Using Django’s Custom Management Commands to Execute Workflows with Application Context</h3>
-              <p class="log-date">July 20, 2025</p>
-              <p><p>At a previous job, one of my colleagues was tasked with a one-off project: processing a large number of files (over 20,000, if I recall correctly) using a third-party service and storing a subset of the results in our database. Here's a breakdown of how we approached it.</p>
-<p>Ideally, we would’ve used a bulk API: upload all files in one go, receive the processed results, and save them to the database. Unfortunately, the third-party service didn’t support bulk processing at the time — only single-file operations were available. This meant we had to process files serially.</p>
-<p>We also wanted to leverage our existing Django application — its models, settings, and utility functions — to perform the task efficiently and consistently.</p>
-<p>One idea was to use the Django shell (<code>python manage.py shell</code>) to import the necessary objects and orchestrate the process manually. This could have worked, and technically we might have added threading for some performance gains.</p>
-<p>But using the shell this way quickly became cumbersome and error-prone for such a large task.</p>
-<p>So we considered a few options:</p>
-<ul>
-<li>Setting up <strong>Celery</strong> and workers to queue and handle the jobs</li>
-<li>Writing a standalone script that used Django's context</li>
-<li>Creating a <strong>custom Django management command</strong></li>
-</ul>
-<p>Since this was a one-time task and didn’t justify setting up a full queuing system like Celery, we decided to go with the third option: a custom Django management command.</p>
-<p>This solution gave us a clean way to structure the code and run it via <code>python manage.py process_files</code>. More importantly, it let us run everything within the Django application context — giving seamless access to models, settings, and business logic without additional boilerplate.</p>
-</p>
-            </div>
-          
-            <div class="log-item">
-              <h3>Hello world</h3>
-              <p class="log-date">July 20, 2025</p>
-              <p><p>I plan to treat these logs as dump of interesting idea I come across in my software engineering practise. The goal is to give anyone who might work with me a peek into how I think — no BS, just real stuff I find worth sharing.</p>
-</p>
-            </div>
-          
-        </section>
+        <nav>
+          <h1 onclick="new Audio('greeting.mp3').play()">Sandeep Sharma</h1>
+        </nav>
+        
+<section>
+  <p>
+    I’m Sandeep — a software engineer with 3 years of experience building web applications across fintech, SaaS, and
+    automation platforms. I primarily work with Python, React, and Postgres, and have built everything from internal tools
+    to production-scale systems. I care deeply about clean, maintainable code on both the frontend and backend, and I aim to
+    ship thoughtful, reliable features that solve real problems.
+  </p>
+  <p class="resume-link">
+    <a href="/SandeepSharma_SoftwareDeveloper_Resume.pdf" target="_blank">📄 View My Resume</a>
+  </p>
+</section>
+<section>
+  <h2>Contact</h2>
+  <ul>
+    <li>
+      <strong>GitHub:</strong>
+      <a href="https://github.com/sndp-s" target="_blank">sndp-s</a>
+    </li>
+    <li>
+      <strong>LinkedIn:</strong>
+      <a href="https://linkedin.com/in/sndp-s" target="_blank">sndp-s</a>
+    </li>
+    <li>
+      <strong>Email:</strong>
+      <a href="mailto:sandeeptech8@gmail.com">sandeeptech8@gmail.com</a>
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>Latest Blog Posts</h2>
+  
+    <ul>
+      
+        <li>
+          <a href="/blogs/my-homelab-is-up-finally/">My homelab is up finally</a>
+          <span class="log-date">July 25, 2025</span>
+        </li>
+      
+        <li>
+          <a href="/blogs/custom-workflows-django-management-commands/">Using Django’s Custom Management Commands to Execute Workflows with Application Context</a>
+          <span class="log-date">July 20, 2025</span>
+        </li>
+      
+        <li>
+          <a href="/blogs/hello-world/">Hello world</a>
+          <span class="log-date">July 20, 2025</span>
+        </li>
+      
+    </ul>
+    <p>
+      <a href="/blogs/">→ View all blog posts</a>
+    </p>
+  
+</section>
       </main>
       <footer class="footer">
         © 2025 Sandeep Sharma. All rights reserved.

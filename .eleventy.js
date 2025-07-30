@@ -13,11 +13,16 @@ module.exports = function (eleventyConfig) {
     "SandeepSharma_SoftwareDeveloper_Resume.pdf"
   );
 
-  eleventyConfig.addCollection("logs", (collectionApi) => {
+  const getSortedBlogs = (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("./logs/*.md")
+      .getFilteredByGlob("./blogs/*.md")
       .sort((a, b) => b.date - a.date);
-  });
+  };
+
+  eleventyConfig.addCollection("blogs", getSortedBlogs);
+  eleventyConfig.addCollection("recentBlogs", (collectionApi) =>
+    getSortedBlogs(collectionApi).slice(0, 3)
+  );
 
   return {
     dir: {

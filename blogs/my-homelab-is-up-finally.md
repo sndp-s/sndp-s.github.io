@@ -1,7 +1,7 @@
 ---
 title: "My homelab is up finally"
 date: 2025-07-25
-permalink: false
+layout: layouts/blog.njk
 ---
 
 Ever since I bought my (first ever) laptop, my desktop has been lying dormant. It had very good specs for my needs — Ryzen 3500X, GTX 1650 Super, 16 GB RAM, and two 240 GB SSDs (dedicated disks for Windows and Linux respectively) — but I needed the portability and flexibility of a laptop more.
@@ -10,7 +10,7 @@ I always had this vague idea of setting it up as a server, but I didn’t have a
 
 Recently, I’ve been thinking a lot about organizing my personal data: bookmarks, notes, docs, books, unread articles, music, movies, YouTube playlists, etc. Some of these are just lists of strings, others are actual files, some are both. This gave me enough clarity to finally take it up.
 
-**Requirements**
+## Requirements
 
 The very first thing I wanted to organize was my bookmarks.
 
@@ -27,7 +27,7 @@ My first thought was: just write something. Maybe a browser extension + FastAPI/
 
 I asked ChatGPT, and one of the options it suggested was Linkding — a self-hosted bookmark manager built with Django and a custom frontend. It looked simple, stable, and familiar. There’s a browser extension for desktop, several mobile apps, and even a Telegram bot. Sold.
 
-**Proxmox**
+## Proxmox
 
 With this baseline requirement in mind, I started setting up the server.
 
@@ -50,7 +50,7 @@ At this point, I realized I was going to hit this same wall for _every_ VM or co
 
 Ubuntu Server is good enough for my use case. But again — no Wi‑Fi drivers out of the box. To avoid more hassle, I just went with Ubuntu Desktop.
 
-**Ubuntu Desktop**
+## Ubuntu Desktop
 
 I ditched Proxmox and installed Ubuntu Desktop directly. Then I installed [Coolify](https://coolify.io), an open-source PaaS.
 
@@ -60,7 +60,7 @@ Can’t remember if it shut down on its own or I rebooted — but it wouldn�
 
 That was it. I was too tired to keep pushing. Took a break.
 
-**Round 3: Just Get It Working**
+## Round 3: Just Get It Working
 
 I came back with one goal: no fancy tools, just get Linkding running.
 
@@ -78,7 +78,7 @@ Nginx routes requests to different services based on path — e.g. `/linkdin
 
 I’ll move to subdomain-based routing once I get a proper domain, but not right now.
 
-**What’s Next?**
+## What’s Next?
 
 I don’t trust local-only storage anymore — one dead SSD is enough. So I’ll eventually set up backups to a remote service like [Backblaze](https://www.backblaze.com) or [Wasabi](https://wasabi.com/pricing).
 
